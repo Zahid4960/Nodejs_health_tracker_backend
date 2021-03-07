@@ -11,10 +11,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 
 
-// app.use('/', (req, res) => res.json('Welcome to the nodejs health tracker backend!!!'))
 app.use('/', authRoute)
-console.log('pass')
-// app.use('/', (req, res) => res.json('hello from app'))
 
 
 app.listen({ port: 5000}, async (req, res) => { 
