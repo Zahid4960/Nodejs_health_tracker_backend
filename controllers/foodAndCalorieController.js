@@ -26,3 +26,31 @@ exports.index = async (req, res) => {
     }
 } 
 
+exports.show = async (req, res, id) => {
+    try {
+        const id = req.params.id 
+        const data = await foodAndCalorieService.show(id)
+
+        if(data.length >= 1){
+            return res.json({
+                "status": "success",
+                "msg": "Food and their calories found for id" + " " + id,
+                "data": data
+            })
+        }
+
+        return res.json({
+            "status": "success",
+            "msg": "Food and their calories not found for id" + " " + id,
+            "data": []
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.json({ 
+            "status": "failed",
+            "msg": "Exception appear!!!",
+        })
+    }
+}
+

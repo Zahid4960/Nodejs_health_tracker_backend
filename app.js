@@ -3,17 +3,16 @@ const bodyParser = require('body-parser')
 const app = express()
 const { sequelize } = require('./models')
 
+
 // routes
-const authRoute = require('./routes/authRoute')
-const foodAndCalorieRoute = require('./routes/foodAndCalorieRoute')
+const apiRoute = require('./routes/apiRoutes')
 
 
 app.use(express.json())
 app.use(bodyParser.json())
 
 
-app.use('/', authRoute)
-app.use('/', foodAndCalorieRoute)
+app.use('/api', apiRoute)
 
 
 app.listen({ port: 5000}, async (req, res) => { 

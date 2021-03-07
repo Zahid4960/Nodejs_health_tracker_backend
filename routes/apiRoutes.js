@@ -7,7 +7,9 @@ const foodAndCalorieController = require('../controllers/foodAndCalorieControlle
 router.get('/', (req, res) => res.status(200).json('Welcome to nodejs health tracker backend!!!'))
 router.get('/sign-in',  authController.SignIn)
 
-router.all('/food-and-calorie', foodAndCalorieController.index)
 
+// food and calories related routes 
+router.get('/food-and-calorie', foodAndCalorieController.index)
+router.get('/food-and-calorie/:id', foodAndCalorieController.show)
 
 module.exports = router
