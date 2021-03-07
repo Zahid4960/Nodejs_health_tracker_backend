@@ -1,6 +1,7 @@
 // services
 const foodAndCalorieService = require("../services/foodAndCalorieService")
 
+
 exports.index = async (req, res) => {
     try{
         const data = await foodAndCalorieService.index()
@@ -25,6 +26,29 @@ exports.index = async (req, res) => {
         })
     }
 } 
+
+
+exports.store = async (req, res) => {
+    try {
+        const payload = req.body
+        const isSaved = await foodAndCalorieService.store(payload)
+
+        if(isSaved){
+            return res.status(200).json({
+                "status": "success",
+                "msg": "Food and calorie data saved successfully!!!",
+                "data": isSaved
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            "status": "failed",
+            "msg": "Exception appear!!!"
+        })
+    }
+}
+
 
 exports.show = async (req, res, id) => {
     try {
