@@ -5,6 +5,7 @@ const { sequelize } = require('./models')
 
 // routes
 const authRoute = require('./routes/authRoute')
+const foodAndCalorieRoute = require('./routes/foodAndCalorieRoute')
 
 
 app.use(express.json())
@@ -12,6 +13,7 @@ app.use(bodyParser.json())
 
 
 app.use('/', authRoute)
+app.use('/', foodAndCalorieRoute)
 
 
 app.listen({ port: 5000}, async (req, res) => { 
