@@ -10,9 +10,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   foodAndCalories.init({
-    foodName: DataTypes.STRING,
-    amount: DataTypes.FLOAT,
-    calorie: DataTypes.FLOAT
+    foodName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      }
+    },
+    amount: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    calorie: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    }
   }, {
     sequelize,
     modelName: 'foodAndCalories',

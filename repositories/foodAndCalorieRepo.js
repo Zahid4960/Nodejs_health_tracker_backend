@@ -12,9 +12,21 @@ const saveData = async (payload) => {
 
 const getByid = async (id) => await model.foodAndCalories.findAll({ where: { id: id} })
 
+const updateData = async (id, payload) => {
+    const isPresent = await model.foodAndCalories.findAll({ where: { id: id}} )
+
+    if(isPresent){
+        const { foodName, amount, calorie } = payload
+        return await isPresent.update({ foodName, amount, calorie })
+    }
+}
+
+const deleteData = async (id) => await model.foodAndCalories.destroy({ where: { id: id} })
 
 module.exports = {
     getAll,
     saveData,
-    getByid
+    getByid,
+    updateData,
+    deleteData
 }

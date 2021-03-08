@@ -44,7 +44,8 @@ exports.store = async (req, res) => {
         console.log(error)
         return res.status(500).json({
             "status": "failed",
-            "msg": "Exception appear!!!"
+            "msg": "Exception appear!!!",
+            "errors": error.errors[0]["message"]
         })
     }
 }
@@ -77,4 +78,48 @@ exports.show = async (req, res, id) => {
         })
     }
 }
+
+
+exports.update = async (req, res) => {
+    try {
+        const id = req.params.id
+        const payload = req.body
+        const data = await foodAndCalorieService.update(id, payload)
+
+        if(data){
+            return res.status(200).json({
+                "status": "success",
+                "msg": "Food and calorie data updated successfully!!!",
+                "data": data
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            "status": "failed",
+            "msg": "Exception appear!!!",
+            "errors": error.errors[0]["message"]
+        })
+    }
+}
+
+
+exports.destroy = async (req, res, id) => {
+    try {
+        if(await foodAndCalorieService.destroy(id)){
+            return res.json("hit")
+            res.status(200).json({
+                "message": "success",
+                "message": "Food and calorie data deleted for id" + " " + id
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            "status": "failed",
+            "msg": "Exception appear!!!",
+            "errors": error.errors[0]["message"]
+        })
+    }
+} 
 
