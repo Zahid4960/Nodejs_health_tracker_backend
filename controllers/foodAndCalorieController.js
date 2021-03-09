@@ -86,11 +86,16 @@ exports.update = async (req, res) => {
         const payload = req.body
         const data = await foodAndCalorieService.update(id, payload)
 
-        if(data){
+        if(data == 1){
             return res.status(200).json({
                 "status": "success",
-                "msg": "Food and calorie data updated successfully!!!",
-                "data": data
+                "msg": "Food and calorie data updated for id" + " " + id,
+                "data": await foodAndCalorieService.show(id) 
+            })
+        }else{
+            return res.status(200).json({
+                "status": "success",
+                "msg": "Food and calorie data do not updated for id" + " " + id
             })
         }
     } catch (error) {
@@ -104,9 +109,9 @@ exports.update = async (req, res) => {
 }
 
 
-exports.destroy = async (req, res, id) => {
+exports.remove = async (req, res, id) => {
     try {
-        if(await foodAndCalorieService.destroy(id)){
+        if(await foodAndCalorieService.remove(id)){
             return res.json("hit")
             res.status(200).json({
                 "message": "success",
