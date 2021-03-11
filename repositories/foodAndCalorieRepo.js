@@ -1,30 +1,43 @@
 const model = require("../models/index")
+// const BaseRepository = require("../repositories/BaseRepository")
 
-
-const getAll = async () => await model.foodAndCalories.findAll()
-
-const saveData = async (payload) => {
-
-    const { foodName, amount, calorie } = payload
+class foodAndCalorieRepo {
     
-    return await model.foodAndCalories.create({ foodName, amount, calorie })
+    // constructor(BaseRepository){
+    //     this.BaseRepository = BaseRepository
+    // }
+
+    async getAll(){
+        return await model.foodAndCalories.findAll()
+    }
 }
 
-const getByid = async (id) => await model.foodAndCalories.findAll({ where: { id: id} })
+module.exports = foodAndCalorieRepo
 
-const updateData = async (id, payload) => {
-    const { foodName, amount, calorie } = payload
-    return await model.foodAndCalories.update({ foodName, amount, calorie }, { where: { id: id } })
-}
+// const getAll = async () => await model.foodAndCalories.findAll()
 
-const deleteData = async (id) => {
-    await model.foodAndCalories.destroy({ where: { id: id} })
-}
+// const saveData = async (payload) => {
 
-module.exports = {
-    getAll,
-    saveData,
-    getByid,
-    updateData,
-    deleteData
-}
+//     const { foodName, amount, calorie } = payload
+    
+//     return await model.foodAndCalories.create({ foodName, amount, calorie })
+// }
+
+// const getByid = async (id) => await model.foodAndCalories.findAll({ where: { id: id} })
+
+// const updateData = async (id, payload) => {
+//     const { foodName, amount, calorie } = payload
+//     return await model.foodAndCalories.update({ foodName, amount, calorie }, { where: { id: id } })
+// }
+
+// const deleteData = async (id) => {
+//     await model.foodAndCalories.destroy({ where: { id: id} })
+// }
+
+// module.exports = {
+//     getAll,
+//     saveData,
+//     getByid,
+//     updateData,
+//     deleteData
+// }

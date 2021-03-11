@@ -1,6 +1,6 @@
-// respositories
 const foodAndCalorieRepo = require("../repositories/foodAndCalorieRepo")
 
+   
 const index = async () => await foodAndCalorieRepo.getAll()
 
 const store = async (payload) => await foodAndCalorieRepo.saveData(payload)
@@ -17,4 +17,7 @@ module.exports = {
     show,
     update,
     remove
+
 }
+
+
