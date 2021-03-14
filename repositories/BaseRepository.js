@@ -1,5 +1,7 @@
-class BaseRepository {
-    async zahid(){
-        return "hello zahid!!!";
-    }
+const Model = require("../models/index")
+
+const getAll = async (model) => await Model.model.findAll()
+
+module.exports = {
+    getAll
 }
