@@ -1,7 +1,10 @@
 const foodAndCalorieRepo = require("../repositories/foodAndCalorieRepo")
+const Model = require("../models/index")
+
+const model = Model.foodAndCalories
 
    
-const index = async () => await foodAndCalorieRepo.getAll()
+const index = async () => await foodAndCalorieRepo.getAll(model)
 
 const store = async (payload) => await foodAndCalorieRepo.saveData(payload)
 
