@@ -11,8 +11,8 @@ router.get("/sign-in",  authController.SignIn)
 // food and calories related routes 
 router.get("/food-and-calorie", foodAndCalorieController.index)
 router.post("/food-and-calorie", foodAndCalorieController.store)
-router.get("/food-and-calorie/:id", foodAndCalorieController.show)
-router.put("/food-and-calorie/:id", foodAndCalorieController.update)
-router.delete("/food-and-calorie/:id", foodAndCalorieController.remove)
+// router.get("/food-and-calorie/:id", foodAndCalorieController.show)
+// router.put("/food-and-calorie/:id", foodAndCalorieController.update)
+// router.delete("/food-and-calorie/:id", foodAndCalorieController.remove)
 
 module.exports = router

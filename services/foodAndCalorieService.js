@@ -1,12 +1,15 @@
-const foodAndCalorieRepo = require("../repositories/foodAndCalorieRepo")
-const Model = require("../models/index")
+// models
+const modelInitiate = require("../models/index")
+const model = modelInitiate.foodAndCalories
 
-const model = Model.foodAndCalories
+// repositories
+const foodAndCalorieRepo = require("../repositories/foodAndCalorieRepo")
+const baseRepo = require("../repositories/BaseRepository")
 
    
-const index = async () => await foodAndCalorieRepo.getAll(model)
+const index = async (page, limit) => await baseRepo.getAllWithPagination(model, page, limit)
 
-const store = async (payload) => await foodAndCalorieRepo.saveData(payload)
+const store = async (payload) => await baseRepo.saveData(model, payload)
 
 const show = async (id) => await foodAndCalorieRepo.getByid(id)
 

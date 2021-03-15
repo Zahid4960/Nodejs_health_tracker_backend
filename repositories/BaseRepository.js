@@ -1,7 +1,13 @@
-const Model = require("../models/index")
+const getAllWithPagination = async (model, page, limit) => {
+    return await model.findAll({ offset: page, limit: limit })
+}
 
-const getAll = async (model) => await Model.model.findAll()
+const saveData = async (model,payload) => {
+    const { foodName, amount, calorie } = payload
+    return await model.create({ foodName, amount, calorie })
+}
 
 module.exports = {
-    getAll
+    getAllWithPagination,
+    saveData
 }
