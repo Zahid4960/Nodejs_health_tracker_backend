@@ -11,18 +11,18 @@ const index = async (page, limit) => await baseRepo.getAllWithPagination(model, 
 
 const store = async (payload) => await baseRepo.saveData(model, payload)
 
-const show = async (id) => await foodAndCalorieRepo.getByid(id)
+const show = async (id) => await baseRepo.getByid(model, id)
 
 const update = async (id, payload) => await foodAndCalorieRepo.updateData(id, payload)
 
-const remove = async (id) => await foodAndCalorieRepo.deleteData(id)
+const destroy = async (id) => await baseRepo.deleteData(model, id)
 
 module.exports = {
     index,
     store,
     show,
     update,
-    remove
+    destroy
 }
 
 

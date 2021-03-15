@@ -32,33 +32,19 @@ exports.store = async (req, res) => {
 }
 
 
-// exports.show = async (req, res, id) => {
-//     try {
-//         const id = req.params.id 
-//         const data = await foodAndCalorieService.show(id)
-
-//         if(data.length >= 1){
-//             return res.json({
-//                 "status": "success",
-//                 "msg": "Food and their calories found for id" + " " + id,
-//                 "data": data
-//             })
-//         }
-
-//         return res.json({
-//             "status": "success",
-//             "msg": "Food and their calories not found for id" + " " + id,
-//             "data": []
-//         })
-        
-//     } catch (error) {
-//         console.log(error)
-//         return res.json({ 
-//             "status": "failed",
-//             "msg": "Exception appear!!!",
-//         })
-//     }
-// }
+exports.show = async (req, res) => {
+    try {
+        let id = req.params.id 
+        let data = await foodAndCalorieService.show(id)
+        if(data.length >= 1){
+            return res.json({ "status": "success", "msg": "Food and their calories found!!!", "data": data })
+        }
+        return res.json({ "status": "success", "msg": "Food and their calories not found!!!", "data": data })
+    } catch (error) {
+        console.log(error)
+        return res.json({ "status": "failed", "msg": "Exception appear!!!" })
+    }
+}
 
 
 // exports.update = async (req, res) => {
@@ -90,22 +76,16 @@ exports.store = async (req, res) => {
 // }
 
 
-// exports.remove = async (req, res, id) => {
-//     try {
-//         if(await foodAndCalorieService.remove(id)){
-//             return res.json("hit")
-//             res.status(200).json({
-//                 "message": "success",
-//                 "message": "Food and calorie data deleted for id" + " " + id
-//             })
-//         }
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).json({
-//             "status": "failed",
-//             "msg": "Exception appear!!!",
-//             "errors": error.errors[0]["message"]
-//         })
-//     }
-// } 
+exports.destroy = async (req, res) => {
+    try {
+        let id = req.params.id
+        if(await foodAndCalorieService.destroy(id)){
+            res.status(200).json({ "status": "success", "message": "Food and calorie data deleted!!!" })
+        }
+        res.status(200).json({ "status": "success", "message": "Food and calorie data not found to delete!!!" })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ "status": "failed", "msg": "Exception appear food & calorie failed to delete!!!" })
+    }
+} 
 
