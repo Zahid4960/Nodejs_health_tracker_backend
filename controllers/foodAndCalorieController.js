@@ -36,10 +36,10 @@ exports.show = async (req, res) => {
     try {
         let id = req.params.id 
         let data = await foodAndCalorieService.show(id)
-        if(data.length >= 1){
-            return res.json({ "status": "success", "msg": "Food and their calories found!!!", "data": data })
+        if(data == null){
+            return res.json({ "status": "success", "msg": "Food and their calories not found!!!", "data": data })
         }
-        return res.json({ "status": "success", "msg": "Food and their calories not found!!!", "data": data })
+        return res.json({ "status": "success", "msg": "Food and their calories found!!!", "data": data })
     } catch (error) {
         console.log(error)
         return res.json({ "status": "failed", "msg": "Exception appear!!!" })
@@ -47,33 +47,21 @@ exports.show = async (req, res) => {
 }
 
 
-// exports.update = async (req, res) => {
-//     try {
-//         const id = req.params.id
-//         const payload = req.body
-//         const data = await foodAndCalorieService.update(id, payload)
-
-//         if(data == 1){
-//             return res.status(200).json({
-//                 "status": "success",
-//                 "msg": "Food and calorie data updated for id" + " " + id,
-//                 "data": await foodAndCalorieService.show(id) 
-//             })
-//         }else{
-//             return res.status(200).json({
-//                 "status": "success",
-//                 "msg": "Food and calorie data do not updated for id" + " " + id
-//             })
-//         }
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).json({
-//             "status": "failed",
-//             "msg": "Exception appear!!!",
-//             "errors": error.errors[0]["message"]
-//         })
-//     }
-// }
+exports.update = async (req, res) => {
+    try {
+        let id = req.params.id
+        let payload = req.body
+        let data = await foodAndCalorieService.update(id, payload)
+        if(data == 1){
+            return res.status(200).json({ "status": "success", "msg": "Food and calorie data updated!!!", "data": await foodAndCalorieService.show(id) })
+        }else{
+            return res.status(200).json({ "status": "success", "msg": "Food and calorie data do not updated!!!" })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ "status": "failed", "msg": "Exception appear food & calorie data failed to update!!!" })
+    }
+}
 
 
 exports.destroy = async (req, res) => {

@@ -13,7 +13,7 @@ const store = async (payload) => await baseRepo.saveData(model, payload)
 
 const show = async (id) => await baseRepo.getByid(model, id)
 
-const update = async (id, payload) => await foodAndCalorieRepo.updateData(id, payload)
+const update = async (id, payload) => await baseRepo.updateData(model, id, payload)
 
 const destroy = async (id) => await baseRepo.deleteData(model, id)
 
